@@ -1,35 +1,44 @@
-// Select color input
-// Select size input
-
-// When size is submitted by the user, call makeGrid()
-
 function makeGrid() {
-//event.preventDefault();
+
 // getting inputs-height & weight
-  let ht = $("#input_height").val();
-    console.log("height:"+ht);
-  let wt = $("#input_width").val();
-    console.log("width:"+wt);
+  let height = $("#input_height").val();
 
+  let width = $("#input_width").val();
 
-  //make grid
-  for(let i=1;i<=ht;i++){       //height
-     $("#pixel_canvas").append("<div class='row'></div>");
-   for(let j=1;j<=wt;j++){       //width
-     $(".row:last").append("<div class='rectangle'></div>");
-   }
- }
+  //clear the canvas before creating new grid-layout
+  $("#pixel_canvas").empty();
+  if(height>48 || width>48){
+    alert("Select value from 1 to 48");
+  }
+  else{
+    //make grid
+    for(let i=1;i<=height;i++){       //height
+      $("#pixel_canvas").append("<div class='row'> </div>");
+      for(let j=1;j<=width;j++){       //width
+        $(".row:last").append("<div class='rectangle'> </div>");
+      }
+    }
+  }
 }
 
-  function colorGrid() {
-  let colorP
-  jQuery('#colorPicker').on('change', function() {
-    colorP=jQuery(this).val();
-});
 
-//fill grid with color-with clickedon
-$(".rectangle").click(function() {
-    $( this ).css( "background-color",colorP );
+// const table = document.getElementById('table_id');
+// for (let i = 0; i < 10; i++) {
+//     // Inserts 10 rows into the table
+//     const row = table.insertRow(i);
+//     for (let j = 0; j < 10; j++) {
+//         // Inserts 10 cells into each of the rows
+//         const cell = row.insertCell(j);
+//     }
+// }
+
+
+  function colorGrid() {
+  const colorP = document.getElementById("colorPicker");  //get color for grid
+
+  //fill grid with color-with clickedon
+  $(".rectangle").click(function() {
+    $( this ).css( "background-color",colorP.value);
   });
 
   //fill grid with color-with hoveron
